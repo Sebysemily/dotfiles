@@ -1,0 +1,6 @@
+[plugin]
+deps = [{ use = "Ape/mediainfo", rev = "c69314e" }]
+
+[flavor]
+deps = []
+

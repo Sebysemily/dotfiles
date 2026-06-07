@@ -18,6 +18,7 @@ configs=(
     "nvim"
     "yazi"
     "lazygit"
+    "fastfetch"
     "starship.toml"
 )
 
