@@ -171,8 +171,8 @@ format = " in $duration "
 style = "bg:lavender"
 disabled = false
 min_time = 1800000
-show_notifications = false
-min_time_to_notify = 45000
+show_notifications = true
+min_time_to_notify = 1800000
 
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"
