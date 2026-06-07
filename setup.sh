@@ -51,6 +51,25 @@ for config in "${configs[@]}"; do
     ln -s "$src" "$dest"
 done
 
+# Vincular .bashrc
+BASHRC_SRC="$DOTFILES_DIR/.bashrc"
+BASHRC_DEST="$HOME/.bashrc"
+
+if [ -e "$BASHRC_DEST" ] || [ -L "$BASHRC_DEST" ]; then
+    if [ "$(readlink -f "$BASHRC_DEST")" != "$BASHRC_SRC" ]; then
+        backup="$BASHRC_DEST.backup-$(date +%Y%m%d%H%M%S)"
+        echo "📦 Creando respaldo de .bashrc en: $backup"
+        mv "$BASHRC_DEST" "$backup"
+        echo "🔗 Creando enlace simbólico para .bashrc"
+        ln -s "$BASHRC_SRC" "$BASHRC_DEST"
+    else
+        echo "✅ .bashrc ya está correctamente vinculado."
+    fi
+else
+    echo "🔗 Creando enlace simbólico para .bashrc"
+    ln -s "$BASHRC_SRC" "$BASHRC_DEST"
+fi
+
 echo "================================================="
 echo "  ¡Listo! Configuración completada con éxito.    "
 echo "================================================="
