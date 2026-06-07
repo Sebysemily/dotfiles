@@ -220,5 +220,13 @@ eval "$(zoxide init bash)"
 eval "$(fzf --bash)"
 
 export PATH=~/.npm-global/bin:$PATH
+fastfetch() {
+    if hostname | grep -iq "oreo"; then
+        command fastfetch --logo-width 0 --logo-height 0 "$@"
+    else
+        command fastfetch "$@"
+    fi
+}
+
 bind -x '"\C-l": clear; fastfetch'
 fastfetch
