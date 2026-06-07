@@ -221,12 +221,48 @@ eval "$(fzf --bash)"
 
 export PATH=~/.npm-global/bin:$PATH
 fastfetch() {
-    if hostname | grep -iq "oreo"; then
-        command fastfetch --logo-width 0 --logo-height 0 "$@"
-    else
-        command fastfetch "$@"
-    fi
+  if hostname | grep -iq "oreo"; then
+    command fastfetch --logo-width 0 --logo-height 0 "$@"
+  else
+    command fastfetch "$@"
+  fi
 }
 
 bind -x '"\C-l": clear; fastfetch'
 fastfetch
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/sebas/miniforge3/bin/conda' 'shell.bash' 'hook' 2>/dev/null)"
+if [ $? -eq 0 ]; then
+  eval "$__conda_setup"
+else
+  if [ -f "/home/sebas/miniforge3/etc/profile.d/conda.sh" ]; then
+    . "/home/sebas/miniforge3/etc/profile.d/conda.sh"
+  else
+    export PATH="/home/sebas/miniforge3/bin:$PATH"
+  fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+# >>> mamba initialize >>>
+# !! Contents within this block are managed by 'mamba shell init' !!
+export MAMBA_EXE='/home/sebas/miniforge3/bin/mamba'
+export MAMBA_ROOT_PREFIX='/home/sebas/miniforge3'
+__mamba_setup="$("$MAMBA_EXE" shell hook --shell bash --root-prefix "$MAMBA_ROOT_PREFIX" 2>/dev/null)"
+if [ $? -eq 0 ]; then
+  eval "$__mamba_setup"
+else
+  alias mamba="$MAMBA_EXE" # Fallback on help from mamba activate
+fi
+unset __mamba_setup
+# <<< mamba initialize <<<
+function y() {
+  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+  yazi "$@" --cwd-file="$tmp"
+  if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+    builtin cd -- "$cwd"
+  fi
+  rm -f -- "$tmp"
+}
