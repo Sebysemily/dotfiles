@@ -230,7 +230,18 @@ fastfetch() {
 
 bind -x '"\C-l": clear; fastfetch'
 fastfetch
-<<<<<<< HEAD
+#yazi function
+function y() {
+  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+  yazi "$@" --cwd-file="$tmp"
+  if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+    builtin cd -- "$cwd"
+  fi
+  rm -f -- "$tmp"
+}
+
+#beagle library export
+export LD_LIBRARY_PATH=$HOME/lib:$LD_LIBRARY_PATH
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -259,16 +270,3 @@ else
 fi
 unset __mamba_setup
 # <<< mamba initialize <<<
-
-
-function y() {
-  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
-  yazi "$@" --cwd-file="$tmp"
-  if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-    builtin cd -- "$cwd"
-  fi
-  rm -f -- "$tmp"
-}
-export LD_LIBRARY_PATH=$HOME/lib:$LD_LIBRARY_PATH
-
-
