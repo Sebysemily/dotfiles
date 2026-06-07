@@ -1,8 +1,10 @@
 {
     "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
     "logo": {
-        "type": "file",
-        "source": "~/.config/fastfetch/catppuccin_kitty.txt",
+        "type": "auto",
+        "source": "$(if [ \"$(hostname)\" = \"oreo\" ]; then echo \"$HOME/.config/fastfetch/catppuccin_kitty.txt\"; else echo \"$HOME/.config/fastfetch/catppuccin_logo.png\"; fi)",
+        "width": 30,
+        "height": 15,
         "color": {
             "1": "magenta"
         },
