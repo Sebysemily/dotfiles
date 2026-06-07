@@ -230,6 +230,7 @@ fastfetch() {
 
 bind -x '"\C-l": clear; fastfetch'
 fastfetch
+<<<<<<< HEAD
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -258,6 +259,8 @@ else
 fi
 unset __mamba_setup
 # <<< mamba initialize <<<
+
+
 function y() {
   local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
   yazi "$@" --cwd-file="$tmp"
@@ -266,3 +269,6 @@ function y() {
   fi
   rm -f -- "$tmp"
 }
+export LD_LIBRARY_PATH=$HOME/lib:$LD_LIBRARY_PATH
+
+
