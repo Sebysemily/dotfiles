@@ -48,6 +48,9 @@ play = [
 	{ run = 'mpv "%1"', orphan = true, for = "windows" },
 	{ run = '''mediainfo "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show media info", for = "unix" },
 ]
+stirling = [
+  { run = 'stirling-pdf "$@"', orphan = true, desc = "Editar en Stirling-PDF", for = "linux" }
+]
 
 [open]
 rules = [
@@ -61,6 +64,8 @@ rules = [
 
 	{ mime = "application/json", use = [ "edit", "reveal" ] },
 	{ mime = "*/javascript",     use = [ "edit", "reveal" ] },
+
+  { mime = "application/pdf", use = [ "stirling", "open", "reveal" ] },
 
 	{ mime = "application/zip",             use = [ "extract", "reveal" ] },
 	{ mime = "application/gzip",            use = [ "extract", "reveal" ] },
