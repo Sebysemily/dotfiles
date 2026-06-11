@@ -54,7 +54,7 @@ stirling = [
 
 [open]
 rules = [
-	{ name = "*/", use = [ "edit", "open", "reveal" ] },
+	{ mime = "inode/directory", use = [ "edit", "open", "reveal" ] },
 
 	{ mime = "text/*",  use = [ "edit", "reveal" ] },
 	{ mime = "image/*", use = [ "open", "reveal" ] },
@@ -102,13 +102,13 @@ preloaders = [
 	{ mime = "application/pdf", run = "pdf" },
 ]
 previewers = [
-	{ name = "*/", run = "folder", sync = true },
+	{ mime = "inode/directory", run = "folder", sync = true },
 	# Code
-	{ mime = "text/*",                 run = "bat" },
-	{ mime = "*/xml",                  run = "bat" },
-	{ mime = "*/cs",                   run = "bat" },
-	{ mime = "*/javascript",           run = "bat" },
-	{ mime = "*/x-wine-extension-ini", run = "bat" },
+	{ mime = "text/*",                 run = "code" },
+	{ mime = "*/xml",                  run = "code" },
+	{ mime = "*/cs",                   run = "code" },
+	{ mime = "*/javascript",           run = "code" },
+	{ mime = "*/x-wine-extension-ini", run = "code" },
 	# JSON
 	{ mime = "application/json", run = "json" },
 	# Image
@@ -128,5 +128,5 @@ previewers = [
 	{ mime = "application/x-rar",           run = "archive" },
 	{ mime = "application/xz",              run = "archive" },
 	# Fallback
-	{ name = "*", run = "file" },
+	{ url = "*", run = "file" },
 ]
