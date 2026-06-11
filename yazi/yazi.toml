@@ -54,7 +54,7 @@ stirling = [
 
 [open]
 rules = [
-	{ url = "*/", use = [ "edit", "open", "reveal" ] },
+	{ name = "*/", use = [ "edit", "open", "reveal" ] },
 
 	{ mime = "text/*",  use = [ "edit", "reveal" ] },
 	{ mime = "image/*", use = [ "open", "reveal" ] },
@@ -102,7 +102,7 @@ preloaders = [
 	{ mime = "application/pdf", run = "pdf" },
 ]
 previewers = [
-	{ url = "*/", run = "folder", sync = true },
+	{ name = "*/", run = "folder", sync = true },
 	# Code
 	{ mime = "text/*",                 run = "bat" },
 	{ mime = "*/xml",                  run = "bat" },
@@ -128,5 +128,5 @@ previewers = [
 	{ mime = "application/x-rar",           run = "archive" },
 	{ mime = "application/xz",              run = "archive" },
 	# Fallback
-	{ url = "*", run = "file" },
+	{ name = "*", run = "file" },
 ]

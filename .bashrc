@@ -260,3 +260,6 @@ unset __mamba_setup
 
 # Alias conda a mamba para mantener la costumbre
 alias conda='mamba'
+
+# opencode
+export PATH=/home/sebas/.opencode/bin:$PATH

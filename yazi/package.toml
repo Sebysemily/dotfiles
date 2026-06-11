@@ -1,6 +1,7 @@
-[plugin]
-deps = [{ use = "Ape/mediainfo", rev = "c69314e" }]
+[[plugin.deps]]
+use = "Ape/mediainfo"
+rev = "c69314e"
+hash = ""
 
 [flavor]
 deps = []
-
