@@ -51,24 +51,36 @@ for config in "${configs[@]}"; do
     ln -s "$src" "$dest"
 done
 
-# Vincular .bashrc
-BASHRC_SRC="$DOTFILES_DIR/.bashrc"
-BASHRC_DEST="$HOME/.bashrc"
+# Lista de dotfiles en $HOME
+home_files=(
+    ".bashrc"
+    ".tmux.conf"
+)
 
-if [ -e "$BASHRC_DEST" ] || [ -L "$BASHRC_DEST" ]; then
-    if [ "$(readlink -f "$BASHRC_DEST")" != "$BASHRC_SRC" ]; then
-        backup="$BASHRC_DEST.backup-$(date +%Y%m%d%H%M%S)"
-        echo "📦 Creando respaldo de .bashrc en: $backup"
-        mv "$BASHRC_DEST" "$backup"
-        echo "🔗 Creando enlace simbólico para .bashrc"
-        ln -s "$BASHRC_SRC" "$BASHRC_DEST"
-    else
-        echo "✅ .bashrc ya está correctamente vinculado."
+for file in "${home_files[@]}"; do
+    src="$DOTFILES_DIR/$file"
+    dest="$HOME/$file"
+
+    # Verificar que el origen exista en la carpeta de dotfiles
+    if [ ! -e "$src" ]; then
+        echo "⚠️  Advertencia: El origen $src no existe. Omitiendo."
+        continue
     fi
-else
-    echo "🔗 Creando enlace simbólico para .bashrc"
-    ln -s "$BASHRC_SRC" "$BASHRC_DEST"
-fi
+
+    if [ -e "$dest" ] || [ -L "$dest" ]; then
+        if [ "$(readlink -f "$dest")" = "$src" ]; then
+            echo "✅ $file ya está correctamente vinculado."
+            continue
+        fi
+
+        backup="$dest.backup-$(date +%Y%m%d%H%M%S)"
+        echo "📦 Creando respaldo de $file en: $backup"
+        mv "$dest" "$backup"
+    fi
+
+    echo "🔗 Creando enlace simbólico para $file"
+    ln -s "$src" "$dest"
+done
 
 echo "================================================="
 echo "  ¡Listo! Configuración completada con éxito.    "
