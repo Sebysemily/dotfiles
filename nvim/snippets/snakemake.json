@@ -1,0 +1,32 @@
+{
+  "Regla Básica de Snakemake": {
+    "prefix": "rule",
+    "body": [
+      "rule ${1:nombre_de_la_regla}:",
+      "    input:",
+      "        ${2:\"data/input.txt\"}",
+      "    output:",
+      "        ${3:\"results/output.txt\"}",
+      "    shell:",
+      "        \"\"\"",
+      "        ${4:comando_a_ejecutar {input} > {output}}",
+      "        \"\"\""
+    ],
+    "description": "Crea una regla estándar con input, output y shell"
+  },
+  "Regla con Script de Python": {
+    "prefix": "rulescript",
+    "body": [
+      "rule ${1:nombre_de_la_regla}:",
+      "    input:",
+      "        ${2:\"data/input.txt\"}",
+      "    output:",
+      "        ${3:\"results/output.txt\"}",
+      "    conda:",
+      "        \"envs/${4:environment.yaml}\"",
+      "    script:",
+      "        \"scripts/${5:mi_script.py}\""
+    ],
+    "description": "Crea una regla que ejecuta un script externo"
+  }
+}
