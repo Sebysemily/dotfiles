@@ -1,5 +1,5 @@
 "$schema" = 'https://starship.rs/config-schema.json'
-command_timeout = 100
+command_timeout = 200
 
 format = """
 [](red)\
@@ -86,6 +86,7 @@ format = '[[ $symbol $branch ](fg:crust bg:yellow)]($style)'
 [git_status]
 style = "bg:yellow"
 format = '[[($all_status$ahead_behind )](fg:crust bg:yellow)]($style)'
+ignore_submodules = true
 
 [nodejs]
 symbol = ""
