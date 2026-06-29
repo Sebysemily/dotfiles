@@ -9,5 +9,6 @@ dependencies:
   - python=3.10
   - scikit-learn
   - scipy
+  - pynvim
 
 prefix: "/home/sebas/miniforge3/envs/mega_base"
