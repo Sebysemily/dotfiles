@@ -82,6 +82,34 @@ for file in "${home_files[@]}"; do
     ln -s "$src" "$dest"
 done
 
+echo ""
+echo "================================================="
+echo "   Configurando Entorno Mamba (mega_base)        "
+echo "================================================="
+
+ENV_NAME="mega_base"
+ENV_FILE="$DOTFILES_DIR/mega_base.yml"
+
+if [ ! -f "$ENV_FILE" ]; then
+    echo "⚠️  Advertencia: No se encontró $ENV_FILE. Omitiendo configuración del entorno."
+else
+    # Verificar si el entorno ya existe
+    if mamba env list | grep -qw "$ENV_NAME"; then
+        echo "🔄 El entorno '$ENV_NAME' ya existe. Actualizando..."
+        mamba env update -n "$ENV_NAME" -f "$ENV_FILE" --prune
+    else
+        echo "🆕 El entorno '$ENV_NAME' no existe. Creando..."
+        mamba env create -f "$ENV_FILE"
+    fi
+
+    if [ $? -eq 0 ]; then
+        echo "✅ Entorno '$ENV_NAME' configurado correctamente."
+    else
+        echo "❌ Error al configurar el entorno '$ENV_NAME'."
+    fi
+fi
+
+echo ""
 echo "================================================="
 echo "  ¡Listo! Configuración completada con éxito.    "
 echo "================================================="

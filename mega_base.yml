@@ -1,0 +1,13 @@
+name: mega_base
+channels:
+  - conda-forge
+dependencies:
+  - ipykernel
+  - matplotlib
+  - numpy
+  - pandas
+  - python=3.10
+  - scikit-learn
+  - scipy
+
+prefix: "/home/sebas/miniforge3/envs/mega_base"

@@ -1,0 +1,21 @@
+{
+  "Snakemake Mock": {
+    "prefix": "mock",
+    "body": [
+      "# ==========================================",
+      "# BLOQUE DE COMPATIBILIDAD JUPYTER / SNAKEMAKE",
+      "# ==========================================",
+      "if \"snakemake\" not in locals():",
+      "    class MockSnakemake:",
+      "        input = [\"${1:data/muestra_prueba.csv}\"]",
+      "        output = [\"${2:results/plot_prueba.png}\"]",
+      "        wildcards = type('Wildcards', (object,), {\"${3:muestra}\": \"${4:prueba}\"})()",
+      "        params = {\"${5:threshold}\": ${6:0.05}}",
+      "    ",
+      "    snakemake = MockSnakemake()",
+      "    print(\"⚠️ Modo Interactivo (Molten/Jupyter) detectado. Usando variables Mock.\")",
+      "# =========================================="
+    ],
+    "description": "Bloque mock para correr scripts de Snakemake interactivamente"
+  }
+}
