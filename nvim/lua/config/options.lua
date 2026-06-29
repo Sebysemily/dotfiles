@@ -3,6 +3,8 @@
 -- Add any additional options here
 
 vim.g.sqlite_clib_path = "/usr/lib/x86_64-linux-gnu/libsqlite3.so.0"
+vim.g.python3_host_prog = "/home/sebas/miniforge3/envs/mega_base/bin/python"
+vim.env.PATH = "/home/sebas/miniforge3/envs/mega_base/bin:" .. vim.env.PATH
 -- Forzar a Neovim a leer los parsers de Treesitter
 vim.opt.runtimepath:append(vim.fn.stdpath("data") .. "/site")
 -- 🤖 Autocomando para controlar el portapapeles
