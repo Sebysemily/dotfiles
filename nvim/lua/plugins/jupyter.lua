@@ -1,7 +1,7 @@
 return {
   {
     "benlubas/molten-nvim",
-
+    version = "^1.0.0",
     build = ":UpdateRemotePlugins",
     init = function()
       -- Configuraciones visuales
@@ -22,6 +22,7 @@ return {
       },
       { "<leader>md", ":MoltenDelete<CR>", desc = "Molten: Borrar Output", silent = true },
       { "<leader>mo", ":MoltenShowOutput<CR>", desc = "Molten: Mostrar Output en Ventana", silent = true },
+      { "<leader>mc", ":MoltenReevaluateCell<CR>", desc = "Molten: Evaluar Celda (# %%)", silent = true },
     },
   },
   -- ... (aquí sigue tu configuración de image.nvim si la pusiste)
