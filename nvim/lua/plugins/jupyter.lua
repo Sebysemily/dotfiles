@@ -25,5 +25,14 @@ return {
       { "<leader>mc", ":MoltenReevaluateCell<CR>", desc = "Molten: Evaluar Celda (# %%)", silent = true },
     },
   },
-  -- ... (aquí sigue tu configuración de image.nvim si la pusiste)
+  --   -- Dependencia para mostrar imágenes en la terminal (requiere ueberzugpp, kitty o wezterm)
+  {
+    "3rd/image.nvim",
+    opts = {
+      backend = "kitty", -- Cambia esto según tu terminal (wezterm, ueberzug)
+      integrations = {
+        markdown = { enabled = true },
+      },
+    },
+  },
 }
