@@ -10,5 +10,7 @@ dependencies:
   - scikit-learn
   - scipy
   - pynvim
+  - nbformat
+  - jupyter_client
 
 prefix: "/home/sebas/miniforge3/envs/mega_base"
