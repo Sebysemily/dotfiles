@@ -219,13 +219,6 @@ cd() {
 eval "$(starship init bash)"
 eval "$(zoxide init bash)"
 eval "$(fzf --bash)"
-
-export PATH=~/.npm-global/bin:$PATH
-fastfetch() {
-  if hostname | grep -iq "oreo"; then
-    command fastfetch --logo-width 0 --logo-height 0 "$@"
-}
-
 #yazi function
 function y() {
   local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
@@ -238,7 +231,6 @@ function y() {
 
 #beagle library export
 export LD_LIBRARY_PATH=$HOME/lib:$LD_LIBRARY_PATH
-
 
 # >>> mamba initialize >>>
 # !! Contents within this block are managed by 'mamba shell init' !!

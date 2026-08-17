@@ -1,5 +1,5 @@
 "$schema" = 'https://starship.rs/config-schema.json'
-command_timeout = 200
+command_timeout = 120
 
 format = """
 [](red)\
@@ -8,10 +8,7 @@ $username\
 $hostname\
 [](bg:peach fg:red)\
 $directory\
-[](bg:yellow fg:peach)\
-$git_branch\
-$git_status\
-[](fg:yellow bg:green)\
+[](bg:green fg:peach)\
 $c\
 $rust\
 $golang\
@@ -79,11 +76,13 @@ truncation_symbol = "…/"
 "Developer" = "󰲋 "
 
 [git_branch]
+disabled = true
 symbol = ""
 style = "bg:yellow"
 format = '[[ $symbol $branch ](fg:crust bg:yellow)]($style)'
 
 [git_status]
+disabled = true
 style = "bg:yellow"
 format = '[[($all_status$ahead_behind )](fg:crust bg:yellow)]($style)'
 ignore_submodules = true
@@ -291,3 +290,10 @@ crust = "#181926"
 ssh_only = true
 format = '[@$hostname ](bold bg:red fg:crust)'
 disabled = false
+
+[git_state]
+disabled = true
+
+[git_metrics]
+disabled = true
+
