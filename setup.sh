@@ -90,8 +90,25 @@ echo "================================================="
 ENV_NAME="mega_base"
 ENV_FILE="$DOTFILES_DIR/mega_base.yml"
 
+# Inicializar mamba dentro del script (no se carga automáticamente desde .bashrc)
+MAMBA_EXE="$HOME/miniforge3/bin/mamba"
+MAMBA_ROOT_PREFIX="$HOME/miniforge3"
+if [ -f "$MAMBA_EXE" ]; then
+    __mamba_setup="$("$MAMBA_EXE" shell hook --shell bash --root-prefix "$MAMBA_ROOT_PREFIX" 2>/dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__mamba_setup"
+    else
+        alias mamba="$MAMBA_EXE"
+    fi
+    unset __mamba_setup
+else
+    echo "⚠️  Advertencia: No se encontró mamba en $MAMBA_EXE. Omitiendo configuración del entorno."
+fi
+
 if [ ! -f "$ENV_FILE" ]; then
     echo "⚠️  Advertencia: No se encontró $ENV_FILE. Omitiendo configuración del entorno."
+elif ! command -v mamba &>/dev/null; then
+    echo "❌ mamba no está disponible. Instala miniforge3 primero."
 else
     # Verificar si el entorno ya existe
     if mamba env list | grep -qw "$ENV_NAME"; then
