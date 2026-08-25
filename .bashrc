@@ -83,6 +83,7 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 
 # Alias's for SSH
 alias oreo='kssh sebas@oreo'
+alias kindred = 'kssh sebas@kindred'
 #######################################################
 # GENERAL ALIAS'S
 #######################################################
