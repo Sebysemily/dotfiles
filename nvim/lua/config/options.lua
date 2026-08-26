@@ -20,3 +20,4 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     end
   end,
 })
+vim.g.ai_cmp = false
