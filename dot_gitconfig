@@ -1,0 +1,6 @@
+[user]
+	email = sebascalvas@outlook.com
+	name = Roger Calvas
+[core]
+	fsmonitor = true
+	untrackedCache = true
