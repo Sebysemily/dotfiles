@@ -6,11 +6,12 @@ return {
       suggestion = {
         enabled = true,
         auto_trigger = true,
+        hide_during_completion = false,
         keymap = {
-          -- LazyVim desactiva esto por defecto, aquí lo forzamos a <C-J>
           accept = "<C-J>",
         },
       },
+      panel = { enabled = false },
       filetypes = {
         ["*"] = true,
         python = true,
@@ -20,6 +21,12 @@ return {
         ["python.jupyter"] = true,
         yaml = false,
         help = false,
+        gitcommit = false,
+        gitrebase = false,
+        hgcommit = false,
+        svn = false,
+        cvs = false,
+        ["."] = false,
       },
     },
   },
