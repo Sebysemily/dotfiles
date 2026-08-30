@@ -1,0 +1,41 @@
+#!/bin/bash
+{{ if eq .chezmoi.os "linux" }}
+
+echo "Instalando dependencias base con APT..."
+sudo apt update
+sudo apt install -y curl git tmux tree multitail trash-cli fzf unzip tar wget
+
+# Crear carpeta bin local si no existe
+mkdir -p ~/.local/bin
+
+echo "Instalando Neovim (Última versión estable)..."
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
+sudo rm -rf /opt/nvim
+sudo tar -C /opt -xzf nvim-linux64.tar.gz
+sudo ln -sf /opt/nvim-linux64/bin/nvim /usr/local/bin/nvim
+rm nvim-linux64.tar.gz
+
+echo "Instalando Starship..."
+curl -sS https://starship.rs/install.sh | sh -s -- -y
+
+echo "Instalando Zoxide..."
+curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
+
+echo "Instalando Lazygit..."
+LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+tar xf lazygit.tar.gz lazygit
+sudo install lazygit /usr/local/bin
+rm lazygit.tar.gz lazygit
+
+echo "Instalando Yazi..."
+YAZI_VERSION=$(curl -s "https://api.github.com/repos/sxyazi/yazi/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+curl -Lo yazi.zip "https://github.com/sxyazi/yazi/releases/latest/download/yazi-x86_64-unknown-linux-gnu.zip"
+unzip -q yazi.zip
+sudo install yazi-x86_64-unknown-linux-gnu/yazi /usr/local/bin/
+sudo install yazi-x86_64-unknown-linux-gnu/ya /usr/local/bin/
+rm -rf yazi.zip yazi-x86_64-unknown-linux-gnu
+
+echo "Instalación completada."
+
+{{ end }}
