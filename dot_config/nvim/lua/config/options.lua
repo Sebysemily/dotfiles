@@ -6,7 +6,7 @@ end
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 
-vim.g.sqlite_clib_path = "/usr/lib/x86_64-linux-gnu/libsqlite3.so.0"
+vim.g.sqlite_clib_path = "/usr/lib/libsqlite3.so"
 vim.g.python3_host_prog = "/home/sebas/miniforge3/envs/mega_base/bin/python"
 vim.env.PATH = "/home/sebas/miniforge3/envs/mega_base/bin:" .. vim.env.PATH
 -- Forzar a Neovim a leer los parsers de Treesitter
@@ -25,3 +25,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 vim.g.ai_cmp = false
+
+-- Activar siempre el tabline en la parte superior
+vim.opt.showtabline = 2
