@@ -117,8 +117,20 @@ export CLICOLOR=1
 export LD_LIBRARY_PATH=$HOME/lib:$LD_LIBRARY_PATH
 export PATH=/home/sebas/.opencode/bin:$PATH
 
+# Salir si la terminal no es interactiva (Protege comandos interactivos como bind)
+[[ $- != *i* ]] && return
+
+# Quality of Life (Bash & Readline)
+bind "set completion-ignore-case on" 2>/dev/null
+bind "set show-all-if-ambiguous on" 2>/dev/null
+bind "set bell-style none" 2>/dev/null
+shopt -s cdspell    # Autocorrige pequeños errores al escribir 'cd'
+shopt -s dirspell   # Autocorrige directorios en autocompletado
+shopt -s cmdhist    # Guarda comandos de múltiples líneas en un solo historial
+
 # Alias Core (Calidad de vida)
 alias ls='ls --color=auto'
+alias grep='grep --color=auto'
 alias vim='nvim'
 alias vi='nvim'
 alias rm='trash -v'
@@ -130,9 +142,6 @@ alias ...='cd ../..'
 alias oreo='ssh sebas@oreo'
 alias kindred='ssh sebas@kindred'
 alias kssh="kitty +kitten ssh"
-
-# Salir si la terminal no es interactiva
-[[ $- != *i* ]] && return
 
 # Inicializar utilidades modernas
 if command -v starship &> /dev/null; then eval "$(starship init bash)"; fi
