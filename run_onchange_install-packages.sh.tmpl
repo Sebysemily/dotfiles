@@ -4,6 +4,14 @@
 # Crear carpeta bin local si no existe
 mkdir -p ~/.local/bin
 
+# Verificar si el usuario actual tiene permisos sudo
+HAS_SUDO=false
+if groups | grep -E -q "\b(sudo|wheel)\b"; then
+    HAS_SUDO=true
+fi
+
+if [ "$HAS_SUDO" = true ]; then
+
 {{ if eq .chezmoi.osRelease.id "ubuntu" }}
 echo "Instalando dependencias en Ubuntu con APT..."
 sudo apt update
@@ -39,14 +47,23 @@ sudo pacman -Syu --noconfirm curl git tmux tree trash-cli fzf unzip tar wget neo
 echo "Instalando Starship..."
 curl -sS https://starship.rs/install.sh | sh -s -- -y
 
+else
+    echo "====================================================================="
+    echo "⚠️  El usuario '$(whoami)' no tiene privilegios de administrador (sudo)."
+    echo "Saltando instalaciones a nivel de sistema (APT/Pacman, Neovim, etc.)."
+    echo "====================================================================="
+fi
+
 echo "Instalando Zoxide..."
 curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
 
-echo "Configurando terminfo global para Kitty (para otros usuarios como cata)..."
-if [ -f "$HOME/.terminfo/x/xterm-kitty" ]; then
-    sudo cp "$HOME/.terminfo/x/xterm-kitty" /usr/share/terminfo/x/
-    sudo chmod 644 /usr/share/terminfo/x/xterm-kitty
-fi
+echo "Configurando terminfo para Kitty (instalación local sin sudo)..."
+# Usamos tic (terminfo compiler) para instalar la definición en ~/.terminfo
+# de forma que cualquier usuario en cualquier servidor pueda reconocer xterm-kitty
+mkdir -p ~/.terminfo
+curl -sL https://raw.githubusercontent.com/kovidgoyal/kitty/master/terminfo/kitty.terminfo > /tmp/kitty.terminfo
+tic -x /tmp/kitty.terminfo
+rm /tmp/kitty.terminfo
 
 echo "Instalación completada."
 
