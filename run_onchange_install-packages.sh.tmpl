@@ -42,6 +42,12 @@ curl -sS https://starship.rs/install.sh | sh -s -- -y
 echo "Instalando Zoxide..."
 curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
 
+echo "Configurando terminfo global para Kitty (para otros usuarios como cata)..."
+if [ -f "$HOME/.terminfo/x/xterm-kitty" ]; then
+    sudo cp "$HOME/.terminfo/x/xterm-kitty" /usr/share/terminfo/x/
+    sudo chmod 644 /usr/share/terminfo/x/xterm-kitty
+fi
+
 echo "Instalación completada."
 
 {{ end }}
