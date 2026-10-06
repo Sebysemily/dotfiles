@@ -18,6 +18,7 @@ map("n", "<leader>Os", "<cmd>ObsidianSearch<cr>", { desc = "Buscar en Obsidian" 
 map("n", "<leader>Ol", "<cmd>ObsidianFollowLink<cr>", { desc = "Seguir enlace" })
 map("n", "<leader>Ob", "<cmd>ObsidianBacklinks<cr>", { desc = "Ver Backlinks" })
 map("n", "<leader>Ot", "<cmd>ObsidianTemplate<cr>", { desc = "Insertar Plantilla" })
+map("n", "<leader>Oi", "<cmd>ObsidianPasteImg<cr>", { desc = "Pegar Imagen" })
 
 -- Which-key group for Academic / Obsidian
 local status_ok, wk = pcall(require, "which-key")

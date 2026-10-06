@@ -105,6 +105,20 @@ return {
         return id
       end,
       
+      -- Configuración para adjuntos (imágenes pegadas)
+      attachments = {
+        img_folder = "99-attachments",
+        -- Generar enlaces estándar de Markdown para compatibilidad visual con Snacks
+        img_text_func = function(client, path)
+          path = client:vault_relative_path(path) or path
+          return string.format("![%s](%s)", path.name, path)
+        end,
+      },
+      -- Nombre por defecto de la imagen (fecha y hora para evitar sobreescribir)
+      image_name_func = function()
+        return string.format("%s-", os.time())
+      end,
+      
       -- Opcional: Desactiva la creación automática de este bloque si prefieres usar el tuyo propio siempre
       -- disable_frontmatter = true,
     },
