@@ -13,7 +13,7 @@ vim.keymap.set({ "n", "v" }, "d", '"_d', { noremap = true, silent = true })
 -- Grupo de Escritura Académica (Super + O mayúscula)
 local map = vim.keymap.set
 map("n", "<leader>Op", "<cmd>QuartoPreview<cr>", { desc = "Quarto Preview (Zathura)" })
-map("n", "<leader>Oc", "<cmd>Telescope zotero<cr>", { desc = "Insertar Cita Zotero" })
+map("n", "<leader>Oc", "<cmd>Telescope bibtex<cr>", { desc = "Insertar Cita BibTeX" })
 map("n", "<leader>Os", "<cmd>ObsidianSearch<cr>", { desc = "Buscar en Obsidian" })
 map("n", "<leader>Ol", "<cmd>ObsidianFollowLink<cr>", { desc = "Seguir enlace" })
 map("n", "<leader>Ob", "<cmd>ObsidianBacklinks<cr>", { desc = "Ver Backlinks" })

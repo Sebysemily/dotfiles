@@ -66,3 +66,8 @@ o.bind("SUPER + SHIFT + J", "Swap window down", hl.dsp.window.swap({ direction =
 o.bind("SUPER + DOWN", "Toggle window split", hl.dsp.layout("togglesplit"))
 o.bind("SUPER + UP", "Keybindings", "omarchy-menu-keybindings")
 o.bind("SUPER + RIGHT", "Toggle workspace layout", "omarchy-hyprland-workspace-layout-toggle")
+
+-- ==========================================
+-- SCRIPT DE RECUPERACION DE DOCK / PCI
+-- ==========================================
+o.bind("SUPER + SHIFT + ALT + R", "Reset Dock/Monitors", "/home/sebas/reset_dock.sh")

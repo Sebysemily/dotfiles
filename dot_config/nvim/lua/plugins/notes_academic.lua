@@ -32,27 +32,35 @@ return {
     end,
   },
 
-  -- Integración de Zotero con Telescope
+  -- Integración de BibTeX con Telescope
   {
-    "jmbuhr/telescope-zotero.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim", "kkharji/sqlite.lua" },
-    config = function()
-      require("zotero").setup({
-        -- Ruta a tu base de datos de Zotero (por defecto suele ser esta)
-        zotero_db_path = vim.fn.expand("~/Documents/zotero/zotero.sqlite")
-      })
-      require("telescope").load_extension("zotero")
+    "nvim-telescope/telescope.nvim",
+    dependencies = {
+      "nvim-telescope/telescope-bibtex.nvim",
+    },
+    opts = function(_, opts)
+      opts.extensions = opts.extensions or {}
+      opts.extensions.bibtex = {
+        depth = 1,
+        global_files = {
+          vim.fn.expand("~/Documents/obsidian_main/2-sources/referencias.bib"),
+          vim.fn.expand("~/Documents/obsidian_main/2-sources/peptides.bib"),
+        },
+        search_keys = { "author", "year", "title" },
+        citation_format = "{{author}} ({{year}}), {{title}}.",
+        citation_trim_firstname = true,
+        citation_max_auth = 2,
+        custom_formats = {
+          { id = "quarto", match = { "^markdown$", "^quarto$" }, cite_marker = "[@%s]" }
+        },
+        format = "quarto",
+      }
     end,
   },
-
-  -- Zotcite (opcional para completado, pero Telescope usará el de arriba)
   {
-    "jalvesaq/zotcite",
-    dependencies = { "hrsh7th/nvim-cmp" },
+    "nvim-telescope/telescope-bibtex.nvim",
     config = function()
-      require("zotcite").setup({
-        filetypes = { "markdown", "quarto", "rmd" }
-      })
+      require("telescope").load_extension("bibtex")
     end,
   },
 
