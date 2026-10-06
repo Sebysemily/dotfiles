@@ -7,7 +7,7 @@ dependencies:
   - matplotlib
   - numpy
   - pandas
-  - python=3.10
+  - python
   - scikit-learn
   - scipy
   - pynvim
@@ -15,5 +15,11 @@ dependencies:
   - jupyter_client
   - jupytext
   - biopython
+  - joblib
+  - requests
+  - lxml
+  - modlamp
+  - seaborn
+  - matplotlib-venn
 
 prefix: "/home/sebas/miniforge3/envs/mega_base"
