@@ -1,6 +1,7 @@
 name: mega_base
 channels:
   - conda-forge
+  - bioconda
 dependencies:
   - ipykernel
   - matplotlib
@@ -13,5 +14,6 @@ dependencies:
   - nbformat
   - jupyter_client
   - jupytext
+  - biopython
 
 prefix: "/home/sebas/miniforge3/envs/mega_base"
